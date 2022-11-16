@@ -1,0 +1,72 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.grid_container div {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.grid_container_2 div {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/* Layout - определение сетки*/
+
+.grid_container {
+    display: grid;
+    grid-template-columns: 5fr 5fr 5fr; /*определяет количество колонок в сетке в px или в специально созданных для grid единицах fr (занимают всё пространство)*/
+    /*grid-template-columns: repeat (3, 5fr); возможна такая запись или*/
+    /*grid-template-columns: repeat (2, 5fr) 100px ; такая запись*/
+    grid-template-rows: 100px 300px;
+
+    /*grid-template: 100px 300px / repeat (3, 5fr); возможна такая запись без расписывания rows и columns*/
+
+    gap: 10px; /* везде добавляет разрыв*/
+    /*column-gap: 10px;  добавляет разрыв между колонками*/
+    /*row-gap: 10px;  добавляет разрыв между ядами*/
+}
+
+/* Имена областей*/
+
+.grid_container_2 {
+    /* display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 100px 100vh 100px; //1 vh - 1% высоты браузера, есть ещё vm - 1% ширины браузера, //
+    grid-template-areas: //Определяем области сетки//
+        'header header' //Обязательно два раза header, так как мы задали именно 2 колонки, хотя объект у нас один. Если будет 5 колонок и все header. то нужно прописать 5 раз header//
+        'sidebar content'
+        'footer footer'; 
+        */
+
+        /* Другая запись вышенаписанного */
+
+        display: grid;
+        grid-template:
+        [start] 'header header' 100px [row2]
+        [row2] 'sidebar content' 100vh [row3]
+        [row3] 'footer footer' 100px [row-end] /150px 1fr
+
+}
+
+/*Далее нужно каждой области задать имя, чтобы из предыдущего шага программе было понятно как расположить элементы*/
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+/* Существует ещё возможность двигать отельные ячейки через grid-column-start и grid-column-end, Тренировка grid - cssgridgarden.com/#ru */
